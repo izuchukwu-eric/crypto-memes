@@ -27,6 +27,7 @@ export const TransactionProvider = ({children}) => {
         setFormData((prevState) => ({...prevState, [name]: e.target.value}))
     }
 
+    //get all transaction
     const getAllTransactions = async () => {
         try {
             if(!ethereum) return alert("Please install metamask");
@@ -136,6 +137,7 @@ export const TransactionProvider = ({children}) => {
         const transactionCount = await transactionContract.getTransactionCounter()
         setTransactionCount(transactionCount.toNumber())
             
+        window.reload();
         } catch (error) {
             console.log(error)
 
@@ -149,7 +151,7 @@ export const TransactionProvider = ({children}) => {
     }, [])
 
     return (
-        <TransactionContext.Provider value={{connectWallet, connectedAccount, formData, setFormData, handleChange, sendTransaction}}>
+        <TransactionContext.Provider value={{connectWallet, connectedAccount, formData, setFormData, handleChange, sendTransaction, transactions, isLoading}}>
             {children}
         </TransactionContext.Provider>
     )
