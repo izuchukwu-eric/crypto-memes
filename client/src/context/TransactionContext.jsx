@@ -86,7 +86,7 @@ export const TransactionProvider = ({children}) => {
         })
 
         //to add to blockchain and get the transactionHash
-        const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount._hex, message, keyword);
+        const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
 
         setIsLoading(true);
         console.log(`Loading - ${transactionHash.hash}`);
